@@ -12,16 +12,16 @@ rate_limit([
 ]);
 
 /**
- * @param array{id?: string, interval?: int, host?: string, prefix?: string} $options
+ * @param array{id?: string|false, interval?: string|false, host?: string, prefix?: string} $options
  */
 function rate_limit(array $options): void
 {
-    $key = $options['id'] ?? null;
-    $interval = (int)($options['interval'] ?? 0);
+    $key = (string)($options['id'] ?? false);
+    $interval = (int)($options['interval'] ?? false);
     $host = $options['host'] ?? 'localhost';
     $prefix = $options['prefix'] ?? 'ratelimit:';
 
-    if (!$key || $interval <= 0) {
+    if ($key === '' || $interval <= 0) {
         return;
     }
 
