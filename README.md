@@ -1,5 +1,19 @@
 # PHP rate limiter
 
+## Features
+
+- As simple as it can be
+- Atomic: no race condition
+- Helps intelligent bots with `Retry-After` HTTP header
+
+## Requirements
+
+- PHP
+- Redis extension
+- Redis server
+
+## Usage
+
 Set rate limit ID and interval (in seconds) in the webserver.
 
 ```apache
