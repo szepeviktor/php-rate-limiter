@@ -52,6 +52,7 @@ LUA;
 
     try {
         $result = $redis->eval($lua, [$prefix . $key, $now, $interval], 1);
+        // $redis->close();
     } catch (\RedisException $e) {
         // error_log(
         return;

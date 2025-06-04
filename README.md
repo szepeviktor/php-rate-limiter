@@ -27,3 +27,7 @@ Start the rate limiter early in PHP.
 ```php
 require __DIR__ . '/rate-limiter.php';
 ```
+
+## Alternative backend
+
+Shared Memory: `rate-limiter-shmop.php`
