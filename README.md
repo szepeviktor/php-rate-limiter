@@ -1,6 +1,6 @@
 # PHP rate limiter
 
-Set rate limit ID and interval in the webserver.
+Set rate limit ID and interval (in seconds) in the webserver.
 
 ```apache
 SetEnvIf User-Agent "GPTBot/1\.2" RATE_LIMIT_ID=GPTBot RATE_LIMIT_INTERVAL=10
@@ -12,4 +12,4 @@ Start the rate limiter early in PHP.
 
 ```php
 require __DIR__ . '/rate-limiter.php';
-``
+```
