@@ -30,11 +30,11 @@ function rate_limit(array $options): void
     try {
         $redis = new Redis();
         if (!$redis->connect($host, 6379)) {
-            // error_log(
+            error_log('Failed to connect to Redis server.');
             return;
         }
     } catch (\RedisException $e) {
-        // error_log(
+        error_log('Redis connection failed: ' . $e->getMessage());
         return;
     }
 
@@ -52,9 +52,9 @@ LUA;
 
     try {
         $result = $redis->eval($lua, [$prefix . $key, $now, $interval], 1);
-        // $redis->close();
+        $redis->close();
     } catch (\RedisException $e) {
-        // error_log(
+        error_log('Failed to execute Redis Lua script: ' . $e->getMessage());
         return;
     }
 

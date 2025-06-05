@@ -25,21 +25,21 @@ function rate_limit(array $options): void
     $shm = @shmop_open(crc32($prefix . $key), 'c', 0600, 4);
 
     if ($shm === false) {
-        // error_log(
+        error_log('Unable to open shared memory segment.');
         return;
     }
 
     $data = shmop_read($shm, 0, 4);
 
     if (strlen($data) !== 4) {
-        // error_log(
+        error_log('Unexpected shared memory content length. Expected 4 bytes.');
         return;
     }
 
     $last = unpack('N', $data);
 
     if ($last === false) {
-        // error_log(
+        error_log('Failed to unpack data from shared memory.');
         return;
     }
 
