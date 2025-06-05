@@ -8,7 +8,7 @@ rate_limit([
     'id' => getenv('RATE_LIMIT_ID'),
     'interval' => getenv('RATE_LIMIT_INTERVAL'),
     'host' => 'localhost',
-    'prefix' => 'ratelimit:waf:',
+    'prefix' => 'waf:ratelimit:',
 ]);
 
 /**
