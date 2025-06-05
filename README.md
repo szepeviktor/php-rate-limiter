@@ -9,7 +9,7 @@
 ## Requirements
 
 - PHP
-- Redis extension
+- `redis` extension
 - Redis server
 
 ## Usage
@@ -30,4 +30,6 @@ require __DIR__ . '/rate-limiter.php';
 
 ## Alternative backend
 
-Shared Memory: `rate-limiter-shmop.php`
+Shared Memory (uses `shmop` extension): `rate-limiter-shmop.php`
+
+List shared memory segments as root: `ipcs -m`
