@@ -8,11 +8,15 @@
 
 ## Requirements
 
-- PHP
+- PHP 7 or 8
 - `redis` extension
 - Redis server
 
-## Usage
+## Installation
+
+Download `rate-limiter.php`.
+
+## Configuration
 
 Set rate limit ID and interval (in seconds) in the webserver.
 
@@ -31,6 +35,8 @@ SetEnvIf User-Agent "GPTBot/\d+\.\d+" \
 ```
 
 Configure Redis connection in `rate-limiter.php`.
+
+## Usage
 
 Start the rate limiter early in PHP.
 
