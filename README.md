@@ -17,7 +17,17 @@
 Set rate limit ID and interval (in seconds) in the webserver.
 
 ```apache
-SetEnvIf User-Agent "GPTBot/1\.2" RATE_LIMIT_ID=GPTBot RATE_LIMIT_INTERVAL=10
+SetEnvIfExpr "-R '47.74.0.0/15' || -R '47.76.0.0/14' || -R '47.80.0.0/13'" \
+    RATE_LIMIT_ID=Alibaba-bot RATE_LIMIT_INTERVAL=10
+
+SetEnvIf User-Agent "Amazonbot/\d+\.\d+" \
+    RATE_LIMIT_ID=Amazon-bot RATE_LIMIT_INTERVAL=10
+SetEnvIf User-Agent "ClaudeBot/\d+\.\d+" \
+    RATE_LIMIT_ID=Claude-bot RATE_LIMIT_INTERVAL=10
+SetEnvIf User-Agent "facebookexternalhit/\d+\.\d+|meta-externalagent/\d+\.\d+" \
+    RATE_LIMIT_ID=Facebook-external RATE_LIMIT_INTERVAL=10
+SetEnvIf User-Agent "GPTBot/\d+\.\d+" \
+    RATE_LIMIT_ID=GPT-bot RATE_LIMIT_INTERVAL=10
 ```
 
 Configure Redis connection in `rate-limiter.php`.
