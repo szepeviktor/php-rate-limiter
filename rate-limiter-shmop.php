@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Rate limiter with shmop driver
+ *
+ * @author Viktor Szépe <viktor@szepe.net>
+ * @link https://github.com/szepeviktor/php-rate-limiter
+ */
+
 namespace SzepeViktor\WordPress\Waf;
 
 rate_limit([
@@ -13,6 +20,11 @@ rate_limit([
  */
 function rate_limit(array $options): void
 {
+    if (!extension_loaded('shmop') || !function_exists('shmop_write')) {
+        error_log('shmop PHP extension (Shared Memory Operations) is not available. Install/enable the shmop extension.');
+        return;
+    }
+
     $key = (string)($options['id'] ?? false);
     $interval = (int)($options['interval'] ?? false);
     $prefix = $options['prefix'] ?? 'ratelimit:';

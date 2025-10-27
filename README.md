@@ -46,7 +46,7 @@ Start the rate limiter early in PHP.
 require __DIR__ . '/rate-limiter.php';
 ```
 
-## Alternative backend
+## Alternative drivers
 
 Shared Memory (uses `shmop` extension): `rate-limiter-shmop.php`
 

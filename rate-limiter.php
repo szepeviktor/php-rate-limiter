@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Rate limiter with redis driver
+ *
+ * @author Viktor Szépe <viktor@szepe.net>
+ * @link https://github.com/szepeviktor/php-rate-limiter
+ */
+
 namespace SzepeViktor\WordPress\Waf;
 
 use Redis;
