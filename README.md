@@ -30,7 +30,7 @@ SetEnvIf User-Agent "Amazonbot/\d+\.\d+" \
     RATE_LIMIT_ID=Amazon-bot RATE_LIMIT_INTERVAL=10
 SetEnvIf User-Agent "ClaudeBot/\d+\.\d+" \
     RATE_LIMIT_ID=Claude-bot RATE_LIMIT_INTERVAL=10
-SetEnvIf User-Agent "facebookexternalhit/\d+\.\d+|meta-externalagent/\d+\.\d+" \
+SetEnvIf User-Agent "facebookexternalhit/\d+\.\d+|meta-externalagent/\d+\.\d+|facebookcatalog/\d+\.\d+" \
     RATE_LIMIT_ID=Facebook-external RATE_LIMIT_INTERVAL=10
 SetEnvIf User-Agent "GPTBot/\d+\.\d+" \
     RATE_LIMIT_ID=GPT-bot RATE_LIMIT_INTERVAL=10
