@@ -33,7 +33,7 @@ function rate_limit(array $options): void
     }
 
     $key = preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', $key);
- 
+
     try {
         $redis = new Redis();
         if (!$redis->connect($host, 6379)) {

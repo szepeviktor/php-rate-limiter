@@ -36,6 +36,13 @@ SetEnvIf User-Agent "GPTBot/\d+\.\d+" \
     RATE_LIMIT_ID=GPT-bot RATE_LIMIT_INTERVAL=10
 ```
 
+Rate limit all AI bots.
+
+```apache
+# RewriteCond from https://github.com/ai-robots-txt/ai.robots.txt/blob/main/.htaccess
+RewriteRule ^ - [E=RATE_LIMIT_ID:%1,E=RATE_LIMIT_INTERVAL:10]
+```
+
 Configure Redis connection in `rate-limiter.php`.
 
 ## Usage
