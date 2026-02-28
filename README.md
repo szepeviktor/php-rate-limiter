@@ -21,6 +21,15 @@ Download `rate-limiter.php`.
 Set rate limit ID and interval (in seconds) in the webserver.
 
 ```apache
+# https://github.com/maxmind/mod_maxminddb
+<IfModule mod_maxminddb.c>
+    MaxMindDBEnable On
+    MaxMindDBFile ASN_DB /var/lib/GeoIP/GeoLite2-ASN.mmdb
+    MaxMindDBEnv MMDB_ASN ASN_DB/autonomous_system_number
+    SetEnvIfExpr "%{env:MMDB_ASN} == '32934'" \
+        RATE_LIMIT_ID=Facebook-external RATE_LIMIT_INTERVAL=10
+</IfModule>
+
 SetEnvIf User-Agent "^$" \
     RATE_LIMIT_ID=No-UA RATE_LIMIT_INTERVAL=10
 #SetEnvIfExpr "-R '47.74.0.0/15' || -R '47.76.0.0/14' || -R '47.80.0.0/13'" \
