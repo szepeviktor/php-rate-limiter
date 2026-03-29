@@ -15,6 +15,8 @@ rate_limit([
     'id' => getenv('RATE_LIMIT_ID'),
     'interval' => getenv('RATE_LIMIT_INTERVAL'),
     'host' => 'localhost',
+    'auth' => ['redis-username', 'redis-password'],
+    'db' => 0,
     'prefix' => 'waf:ratelimit:',
 ]);
 
@@ -40,8 +42,16 @@ function rate_limit(array $options): void
             error_log('Failed to connect to Redis server.');
             return;
         }
+        if (!$redis->auth($options['auth'])) {
+            error_log('Failed to authenticate to Redis server.');
+            return;
+        }
+        if (!$redis->select($options['db'])) {
+            error_log('Failed to select Redis database.');
+            return;
+        }
     } catch (\RedisException $e) {
-        error_log('Redis connection failed: ' . $e->getMessage());
+        error_log('Redis connection error: ' . $e->getMessage());
         return;
     }
 
